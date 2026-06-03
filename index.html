@@ -359,33 +359,57 @@ body {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
       <!-- KPIs portafolio -->
       <div style="padding:20px 24px;border-right:1px solid var(--border);">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-            <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Inversión total COP</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;" id="ptInvCOP">—</div>
-            <div style="font-size:11px;color:var(--ink-muted);margin-top:2px;">$M pesos</div>
+
+        <!-- FILA 1: Inversión aportada -->
+        <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">Capital invertido</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Invertido COP</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;" id="ptInvCOP">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;">$M pesos</div>
           </div>
-          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-            <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Inversión total USD</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;" id="ptInvUSD">—</div>
-            <div style="font-size:11px;color:var(--ink-muted);margin-top:2px;">dólares</div>
+          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Invertido USD</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;" id="ptInvUSD">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;">dólares</div>
           </div>
-          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:14px 16px;">
-            <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Commitment total (USD)</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#2E7D5E;" id="ptValUSD">—</div>
-            <div style="font-size:11px;color:var(--ink-muted);margin-top:2px;">capital comprometido en fondos VC</div>
-          </div>
-          <div style="background:var(--ink);border-radius:8px;padding:14px 16px;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
-            <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">Total consolidado USD</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--gold-light);" id="ptTotalUSD">—</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;">COP + USD a TRM actual</div>
+          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Commitment (USD)</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--ink-muted);" id="ptValUSD">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;">fondos VC</div>
           </div>
         </div>
-        <!-- Barra inversión vs valoración -->
+
+        <!-- FILA 2: Valor actual -->
+        <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">Valor actual del portafolio</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Actual COP</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;" id="ptActCOP">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;">$M pesos</div>
+          </div>
+          <div style="background:var(--surface-warm);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Actual USD</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;" id="ptActUSD">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;">dólares</div>
+          </div>
+          <div style="background:var(--ink);border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px;">Total USD</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--gold-light);" id="ptTotalUSD">—</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;">COP + USD a TRM</div>
+          </div>
+          <div style="border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;border:1px solid var(--border);" id="ptValizCard">
+            <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Valorización</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;" id="ptValizPct">—</div>
+            <div style="font-size:10px;color:var(--ink-muted);margin-top:2px;" id="ptValizAbs">—</div>
+          </div>
+        </div>
+
+        <!-- Barra inversión vs commitment -->
         <div style="margin-top:4px;">
           <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);margin-bottom:6px;">
-            <span>Inversión aportada</span>
+            <span>Capital aportado</span>
             <span id="ptUpsideLabel" style="color:var(--ink-muted);font-weight:500;">Commitment</span>
           </div>
           <div style="height:8px;background:rgba(184,149,90,.12);border-radius:99px;overflow:hidden;display:flex;">
@@ -764,8 +788,10 @@ function recalcAll() {
   // Portfolio delta: actual vs inicial consolidado en USD
   const inicialCOPM = invCOP.reduce((a,x) => a + (x.inicial||0), 0);
   const inicialUSD  = invUSD.reduce((a,x) => a + (x.inicial||0), 0);
-  const inicialConsol = (inicialCOPM * 1e6 / 1000 / trm) + inicialUSD; // en USD K
-  const actualConsol  = consolidadoUSD; // ya en USD K
+  const inicialConsol = (inicialCOPM * 1e6 / trm) + inicialUSD; // en USD
+  const actCOPM2 = invCOP.reduce((a,x) => a + (x.actual||0), 0);
+  const actUSD2  = invUSD.reduce((a,x) => a + (x.actual||0), 0);
+  const actualConsol  = (actCOPM2 * 1e6 / trm) + actUSD2; // en USD
   const deltaPct = inicialConsol > 0 ? ((actualConsol - inicialConsol) / inicialConsol * 100) : 0;
   const deltaEl = document.getElementById('kpiDeltaPortafolio');
   const sign = deltaPct >= 0 ? '+' : '';
@@ -873,28 +899,31 @@ function buildCharts() {
 }
 
 function calcPortafolio(trm) {
-  // Inversión aportada total COP (en $M)
+  // Inversión aportada (inicial)
   const invCOPtotal = invCOP.reduce((a,x) => a + (x.inicial||0), 0);
-  // Inversión aportada total USD
   const invUSDtotal = invUSD.reduce((a,x) => a + (x.inicial||0), 0);
-  // Valoración potencial USD (solo los que tienen potencial)
+  // Commitment total USD
   const valUSDtotal = invUSD.reduce((a,x) => a + (x.commitment||0), 0);
-  // Valor actual total USD
+  // Valor actual
+  const actCOPtotal = invCOP.reduce((a,x) => a + (x.actual||0), 0);
   const actUSDtotal = invUSD.reduce((a,x) => a + (x.actual||0), 0);
-  // Total consolidado en USD
-  const copEnUSD = invCOPtotal * 1e6 / trm;
-  const totalUSD = copEnUSD + actUSDtotal;
+  // Consolidados en USD
+  const invCOPenUSD = invCOPtotal * 1e6 / trm;
+  const actCOPenUSD = actCOPtotal * 1e6 / trm;
+  const totalInvUSD = invCOPenUSD + invUSDtotal;
+  const totalActUSD = actCOPenUSD + actUSDtotal;
+  // Valorización
+  const valizAbs = totalActUSD - totalInvUSD;
+  const valizPct = totalInvUSD > 0 ? (valizAbs / totalInvUSD * 100) : 0;
+  // Commitment bar
+  const upsideUSD = Math.max(0, valUSDtotal);
 
-  // Upside = valoración potencial - inversión aportada USD
-  const upsideUSD = Math.max(0, valUSDtotal - invUSDtotal);
-
-  // Por categoría (USD equiv.)
+  // Por categoría (USD equiv.) — inversión inicial vs commitment
   const cats = {};
   invCOP.forEach(x => {
     const t = x.tipoLabel;
     if (!cats[t]) cats[t] = { inv: 0, val: 0 };
     cats[t].inv += (x.inicial||0) * 1e6 / trm;
-    cats[t].val += 0; // COP no tiene potencial separado
   });
   invUSD.forEach(x => {
     const t = x.tipoLabel;
@@ -903,27 +932,41 @@ function calcPortafolio(trm) {
     cats[t].val += (x.commitment||0);
   });
 
-  return { invCOPtotal, invUSDtotal, valUSDtotal, actUSDtotal, totalUSD, upsideUSD, copEnUSD, cats };
+  return { invCOPtotal, invUSDtotal, valUSDtotal, actCOPtotal, actUSDtotal,
+           totalInvUSD, totalActUSD, valizAbs, valizPct, upsideUSD, invCOPenUSD, cats };
 }
 
 function buildPortafolioChart(trm) {
   const d = calcPortafolio(trm);
 
-  // Update KPIs
+  // Row 1 — Capital invertido
   document.getElementById('ptInvCOP').textContent = '$' + fmt(d.invCOPtotal) + 'M';
-  document.getElementById('ptInvUSD').textContent = '$' + fmt(Math.round(d.invUSDtotal / 1000)) + 'K';
-  document.getElementById('ptValUSD').textContent = d.valUSDtotal > 0 ? 'USD ' + fmt(Math.round(d.valUSDtotal)) : '—';
-  document.getElementById('ptTotalUSD').textContent = '$' + (d.totalUSD / 1e6).toFixed(2) + 'M';
+  document.getElementById('ptInvUSD').textContent = 'USD ' + fmt(Math.round(d.invUSDtotal / 1000)) + 'K';
+  document.getElementById('ptValUSD').textContent = d.valUSDtotal > 0 ? 'USD ' + fmt(Math.round(d.valUSDtotal / 1000)) + 'K' : '—';
 
-  // Progress bar: inversión vs upside
-  const invUSDequiv = d.copEnUSD + d.invUSDtotal;
-  const barTotal = invUSDequiv + d.upsideUSD;
-  const invPct = barTotal > 0 ? (invUSDequiv / barTotal * 100).toFixed(0) : 100;
+  // Row 2 — Valor actual
+  document.getElementById('ptActCOP').textContent = '$' + fmt(d.actCOPtotal) + 'M';
+  document.getElementById('ptActUSD').textContent = 'USD ' + fmt(Math.round(d.actUSDtotal / 1000)) + 'K';
+  document.getElementById('ptTotalUSD').textContent = '$' + (d.totalActUSD / 1e6).toFixed(2) + 'M';
+
+  // Valorización card
+  const sign = d.valizPct >= 0 ? '+' : '';
+  const color = d.valizPct >= 0 ? 'var(--success)' : 'var(--danger)';
+  document.getElementById('ptValizPct').textContent = sign + d.valizPct.toFixed(1) + '%';
+  document.getElementById('ptValizPct').style.color = color;
+  document.getElementById('ptValizAbs').textContent = (d.valizAbs >= 0 ? '+' : '') + '$' + (d.valizAbs / 1e6).toFixed(2) + 'M USD';
+  document.getElementById('ptValizAbs').style.color = color;
+  document.getElementById('ptValizCard').style.background = d.valizPct >= 0 ? 'rgba(46,125,94,0.06)' : 'rgba(139,46,46,0.06)';
+  document.getElementById('ptValizCard').style.borderColor = d.valizPct >= 0 ? 'rgba(46,125,94,0.3)' : 'rgba(139,46,46,0.3)';
+
+  // Progress bar: inversión aportada vs commitment
+  const barTotal = d.totalInvUSD + d.upsideUSD;
+  const invPct = barTotal > 0 ? (d.totalInvUSD / barTotal * 100).toFixed(0) : 100;
   const valPct = 100 - invPct;
   document.getElementById('ptBarInv').style.width = invPct + '%';
   document.getElementById('ptBarVal').style.width = valPct + '%';
-  document.getElementById('ptBarInvLabel').textContent = '$' + (invUSDequiv/1e6).toFixed(2) + 'M USD aportados';
-  document.getElementById('ptBarValLabel').textContent = d.upsideUSD > 0 ? 'USD ' + fmt(Math.round(d.upsideUSD)) + ' commitment' : 'Sin commitment registrado';
+  document.getElementById('ptBarInvLabel').textContent = '$' + (d.totalInvUSD / 1e6).toFixed(2) + 'M USD aportados';
+  document.getElementById('ptBarValLabel').textContent = d.upsideUSD > 0 ? 'USD ' + fmt(Math.round(d.upsideUSD / 1000)) + 'K commitment' : 'Sin commitment registrado';
 
   // Stacked bar chart by category
   const catKeys = Object.keys(d.cats).filter(k => d.cats[k].inv > 0 || d.cats[k].val > 0);

@@ -617,7 +617,7 @@ body {
     <div style="margin-top:20px;padding:14px 18px;background:var(--surface-warm);border-radius:8px;border:1px solid var(--border);">
       <p style="font-size:12px;color:var(--ink-muted);line-height:1.7;">
         <strong style="color:var(--ink);">Inversiones que generan ingreso mensual:</strong>
-        Del Primo Foods (intereses $18,350K/mes COP),
+        Del Primo (préstamo) (intereses $18,350K/mes COP),
         Toscana/Varahonda (arriendo $6,000K/mes COP),
         Spot (dividendos $3,300K/mes COP, trimestral promediado),
         Cubiq (sin ingreso mensual actualmente).
@@ -639,13 +639,13 @@ body {
 const TRM_DEFAULT = 4100;
 
 const invCOP = [
-  { nombre: 'Del Primo Participación', tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Voltana',        fecha: '2021-10-01', participacion: 74.35, inicial: 2613, actual: 1000, ingresoMes: 18350 },
+  { nombre: 'Del Primo Participación', tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Voltana',        fecha: '2021-10-01', participacion: 74.35, inicial: 2613, actual: 1000, ingresoMes: 0 },
   { nombre: 'Rancho Victoria',         tipo: 'ref',  tipoLabel: 'Reforestación',   sociedad: 'Voltana',        fecha: '2011-05-21', participacion: 2.46,  inicial: 1465, actual: 1465, ingresoMes: 0 },
   { nombre: 'Spot',                    tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2023-03-23', participacion: null,  inicial: 780,  actual: 780,  ingresoMes: 3300 },
   { nombre: 'Viverdi',                 tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2021-10-01', participacion: null,  inicial: 492,  actual: 492,  ingresoMes: 0 },
   { nombre: 'Baia Kristal',            tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2021-04-21', participacion: 5.1,   inicial: 1416, actual: 1416, ingresoMes: 0 },
   { nombre: 'Ingeurbe Calle 90',       tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2026-06-07', participacion: 12.725,inicial: 3000, actual: 3000, ingresoMes: 0 },
-  { nombre: 'Del Primo (préstamo)',    tipo: 'pres', tipoLabel: 'Préstamo',         sociedad: 'Voltana',        fecha: '2022-06-22', participacion: null,  inicial: 1835, actual: 1835, ingresoMes: 0 },
+  { nombre: 'Del Primo (préstamo)',    tipo: 'pres', tipoLabel: 'Préstamo',         sociedad: 'Voltana',        fecha: '2022-06-22', participacion: null,  inicial: 1835, actual: 1835, ingresoMes: 18350 },
   { nombre: 'EME Panadería (préstamo)',tipo: 'pres', tipoLabel: 'Préstamo',         sociedad: 'Voltana',        fecha: '2025-05-22', participacion: null,  inicial: 150,  actual: 150,  ingresoMes: 0 },
   { nombre: 'Toscana/Varahonda',       tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: null,         participacion: null,  inicial: 0,    actual: 0,    ingresoMes: 6000 },
 ];

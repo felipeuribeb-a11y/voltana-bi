@@ -286,8 +286,8 @@ body {
   </nav>
   <div class="header-trm">
     <span>TRM $</span>
-    <input type="number" id="trmInput" value="4100" step="10" onchange="recalcAll()">
-    <span>COP/USD</span>
+    <input type="number" id="trmInput" value="4100" step="10" onchange="recalcAll()" title="TRM oficial · editable manualmente">
+    <span id="trmLabel" style="font-size:11px;color:rgba(255,255,255,0.35);margin-left:2px;">cargando…</span>
   </div>
 </header>
 
@@ -1049,10 +1049,29 @@ function showToast() {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
-  renderCOP();
-  renderUSD();
-  buildCharts();
-  recalcAll();
+  // Auto-fetch TRM oficial from co.dolarapi.com (Superintendencia Financiera)
+  fetch('https://co.dolarapi.com/v1/trm')
+    .then(r => r.json())
+    .then(d => {
+      if (d && d.valor) {
+        const trm = Math.round(d.valor);
+        document.getElementById('trmInput').value = trm;
+        const fecha = d.fechaActualizacion
+          ? new Date(d.fechaActualizacion).toLocaleDateString('es-CO', { day:'2-digit', month:'short' })
+          : '';
+        document.getElementById('trmLabel').textContent = fecha ? '· ' + fecha : '· oficial';
+        document.getElementById('trmLabel').style.color = 'rgba(212,176,122,0.7)';
+      }
+    })
+    .catch(() => {
+      document.getElementById('trmLabel').textContent = '· manual';
+    })
+    .finally(() => {
+      renderCOP();
+      renderUSD();
+      buildCharts();
+      recalcAll();
+    });
 });
 </script>
 </body>

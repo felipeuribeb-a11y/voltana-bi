@@ -315,7 +315,7 @@ body {
     <div class="kpi-card">
       <div class="kpi-label">Portafolio consolidado</div>
       <div class="kpi-value" id="kpiConsolidado">—</div>
-      <div class="kpi-sub">en USD (a TRM actual)</div>
+      <div class="kpi-sub">en USD (a TRM actual) · <span id="kpiDeltaPortafolio" style="font-weight:600;">—</span></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Ingresos mensuales</div>
@@ -444,7 +444,7 @@ body {
             <td colspan="3">Grand Total</td>
             <td class="r" id="tfootCOPinicial">—</td>
             <td class="r" id="tfootCOPactual">—</td>
-            <td class="r" id="tfootCOPretorno">—</td>
+            <td class="r" id="tfootCOPretorno" style="font-size:13px;font-weight:600;">—</td>
             <td class="r" id="tfootCOPingreso">—</td>
           </tr>
         </tfoot>
@@ -487,7 +487,7 @@ body {
             <td class="r" id="tfootUSDinicial">—</td>
             <td class="r" id="tfootUSDactual">—</td>
             <td class="r" id="tfootUSDpot">—</td>
-            <td class="r" id="tfootUSDretorno">—</td>
+            <td class="r" id="tfootUSDretorno" style="font-size:13px;font-weight:600;">—</td>
             <td class="r" id="tfootUSDingreso">—</td>
           </tr>
         </tfoot>
@@ -615,7 +615,7 @@ body {
 const TRM_DEFAULT = 4100;
 
 const invCOP = [
-  { nombre: 'Del Primo Participación', tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Voltana',        fecha: '2021-10-01', participacion: 74.35, inicial: 2613, actual: 2613, ingresoMes: 18350 },
+  { nombre: 'Del Primo Participación', tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Voltana',        fecha: '2021-10-01', participacion: 74.35, inicial: 2613, actual: 1000, ingresoMes: 18350 },
   { nombre: 'Rancho Victoria',         tipo: 'ref',  tipoLabel: 'Reforestación',   sociedad: 'Voltana',        fecha: '2011-05-21', participacion: 2.46,  inicial: 1465, actual: 1465, ingresoMes: 0 },
   { nombre: 'Spot',                    tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2023-03-23', participacion: null,  inicial: 780,  actual: 780,  ingresoMes: 3300 },
   { nombre: 'Viverdi',                 tipo: 'real', tipoLabel: 'Inmobiliario',     sociedad: 'Voltana',        fecha: '2021-10-01', participacion: null,  inicial: 492,  actual: 492,  ingresoMes: 0 },
@@ -627,14 +627,14 @@ const invCOP = [
 ];
 
 const invUSD = [
-  { nombre: 'OneVC Fund II',       tipo: 'vc',   tipoLabel: 'VC Fund',        sociedad: 'Cafedan Invest', fecha: '2022-02-01', inicial: 155000,  actual: 155000, potencial: 200000, ingresoMes: 0 },
-  { nombre: 'Wollef Fund III',     tipo: 'vc',   tipoLabel: 'VC Fund',        sociedad: 'Cafedan Invest', fecha: '2022-06-22', inicial: 125000,  actual: 125000, potencial: 250000, ingresoMes: 0 },
-  { nombre: 'Blue Rock',           tipo: 'real', tipoLabel: 'Inmobiliario',   sociedad: 'Tallinn',        fecha: '2022-02-22', inicial: 643000,  actual: 643000, potencial: 0,       ingresoMes: 0 },
-  { nombre: 'Konkretus',           tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Tallinn',        fecha: '2023-01-23', inicial: 140000,  actual: 140000, potencial: 200000, ingresoMes: 0 },
-  { nombre: 'Cubiq',               tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Tallinn',        fecha: '2024-02-01', inicial: 136000,  actual: 136000, potencial: 0,       ingresoMes: 2025 },
+  { nombre: 'OneVC Fund II',       tipo: 'vc',   tipoLabel: 'VC Fund',        sociedad: 'Cafedan Invest', fecha: '2022-02-01', inicial: 155000,  actual: 480500,  potencial: 200000, ingresoMes: 0 },
+  { nombre: 'Wollef Fund III',     tipo: 'vc',   tipoLabel: 'VC Fund',        sociedad: 'Cafedan Invest', fecha: '2022-06-22', inicial: 125000,  actual: 188750,  potencial: 250000, ingresoMes: 0 },
+  { nombre: 'Blue Rock',           tipo: 'real', tipoLabel: 'Inmobiliario',   sociedad: 'Tallinn',        fecha: '2022-02-22', inicial: 643000,  actual: 643000,  potencial: 0,       ingresoMes: 0 },
+  { nombre: 'Konkretus',           tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Tallinn',        fecha: '2023-01-23', inicial: 200000,  actual: 140000,  potencial: 200000, ingresoMes: 0 },
+  { nombre: 'Cubiq',               tipo: 'empr', tipoLabel: 'Emprendimiento', sociedad: 'Tallinn',        fecha: '2024-02-01', inicial: 100000,  actual: 136000,  potencial: 0,       ingresoMes: 2025 },
   { nombre: 'Baia Kristal (prést)',tipo: 'pres', tipoLabel: 'Préstamo',       sociedad: 'Tallinn',        fecha: '2020-12-01', inicial: 2079000, actual: 2079000, potencial: 0,      ingresoMes: 0 },
-  { nombre: 'Hnos. Baia Kristal',  tipo: 'pres', tipoLabel: 'Préstamo',       sociedad: 'Tallinn',        fecha: '2022-06-01', inicial: 178000,  actual: 178000, potencial: 0,       ingresoMes: 0 },
-  { nombre: 'Blue Rock (prést.)',  tipo: 'pres', tipoLabel: 'Préstamo',       sociedad: 'Tallinn',        fecha: '2022-02-01', inicial: 750000,  actual: 750000, potencial: 0,       ingresoMes: 0 },
+  { nombre: 'Hnos. Baia Kristal',  tipo: 'pres', tipoLabel: 'Préstamo',       sociedad: 'Tallinn',        fecha: '2022-06-01', inicial: 178000,  actual: 178000,  potencial: 0,       ingresoMes: 0 },
+  { nombre: 'Blue Rock (prést.)',  tipo: 'pres', tipoLabel: 'Préstamo',       sociedad: 'Tallinn',        fecha: '2022-02-01', inicial: 750000,  actual: 750000,  potencial: 0,       ingresoMes: 0 },
 ];
 
 // Fixed monthly expenses
@@ -757,6 +757,17 @@ function recalcAll() {
   document.getElementById('kpiTotalCOP').textContent = '$' + fmt(totalCOPM) + 'M';
   document.getElementById('kpiTotalUSD').textContent = '$' + fmt(totalUSD / 1000, 0) + 'K';
   document.getElementById('kpiConsolidado').textContent = '$' + fmt(consolidadoUSD / 1000, 2) + 'M';
+
+  // Portfolio delta: actual vs inicial consolidado en USD
+  const inicialCOPM = invCOP.reduce((a,x) => a + (x.inicial||0), 0);
+  const inicialUSD  = invUSD.reduce((a,x) => a + (x.inicial||0), 0);
+  const inicialConsol = (inicialCOPM * 1e6 / 1000 / trm) + inicialUSD; // en USD K
+  const actualConsol  = consolidadoUSD; // ya en USD K
+  const deltaPct = inicialConsol > 0 ? ((actualConsol - inicialConsol) / inicialConsol * 100) : 0;
+  const deltaEl = document.getElementById('kpiDeltaPortafolio');
+  const sign = deltaPct >= 0 ? '+' : '';
+  deltaEl.textContent = sign + deltaPct.toFixed(1) + '% vs inicial';
+  deltaEl.style.color = deltaPct >= 0 ? 'var(--success)' : 'var(--danger)';
 
   // Ingresos mensuales — solo los que generan flujo, en $K COP equiv.
   const ingrCOPk = cop.sumIngreso; // ya en $K COP

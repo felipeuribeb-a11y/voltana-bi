@@ -954,7 +954,7 @@ function buildPortafolioChart(trm) {
   const color = d.valizPct >= 0 ? 'var(--success)' : 'var(--danger)';
   document.getElementById('ptValizPct').textContent = sign + d.valizPct.toFixed(1) + '%';
   document.getElementById('ptValizPct').style.color = color;
-  document.getElementById('ptValizAbs').textContent = (d.valizAbs >= 0 ? '+' : '') + '$' + (d.valizAbs / 1e6).toFixed(2) + 'M USD';
+  document.getElementById('ptValizAbs').textContent = (d.valizAbs >= 0 ? '+' : '') + 'USD ' + fmt(Math.round(d.valizAbs / 1000)) + 'K';
   document.getElementById('ptValizAbs').style.color = color;
   document.getElementById('ptValizCard').style.background = d.valizPct >= 0 ? 'rgba(46,125,94,0.06)' : 'rgba(139,46,46,0.06)';
   document.getElementById('ptValizCard').style.borderColor = d.valizPct >= 0 ? 'rgba(46,125,94,0.3)' : 'rgba(139,46,46,0.3)';
@@ -1050,27 +1050,39 @@ function showToast() {
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-fetch TRM oficial from co.dolarapi.com (Superintendencia Financiera)
-  fetch('https://co.dolarapi.com/v1/trm')
+  // Fuente 1: exchangerate-api.com — tasa de mercado en tiempo real USD→COP
+  // Fuente 2: co.dolarapi.com — TRM oficial Superfinanciera (fallback)
+  const setTRM = (val, label) => {
+    document.getElementById('trmInput').value = Math.round(val);
+    document.getElementById('trmLabel').textContent = '· ' + label;
+    document.getElementById('trmLabel').style.color = 'rgba(212,176,122,0.7)';
+    renderCOP(); renderUSD(); buildCharts(); recalcAll();
+  };
+  fetch('https://open.er-api.com/v6/latest/USD')
     .then(r => r.json())
     .then(d => {
-      if (d && d.valor) {
-        const trm = Math.round(d.valor);
-        document.getElementById('trmInput').value = trm;
-        const fecha = d.fechaActualizacion
-          ? new Date(d.fechaActualizacion).toLocaleDateString('es-CO', { day:'2-digit', month:'short' })
-          : '';
-        document.getElementById('trmLabel').textContent = fecha ? '· ' + fecha : '· oficial';
-        document.getElementById('trmLabel').style.color = 'rgba(212,176,122,0.7)';
-      }
+      if (d && d.rates && d.rates.COP) {
+        const now = new Date();
+        const hora = now.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+        setTRM(d.rates.COP, 'tiempo real ' + hora);
+      } else { throw new Error('no COP'); }
     })
     .catch(() => {
-      document.getElementById('trmLabel').textContent = '· manual';
-    })
-    .finally(() => {
-      renderCOP();
-      renderUSD();
-      buildCharts();
-      recalcAll();
+      // Fallback: TRM oficial Superfinanciera
+      fetch('https://co.dolarapi.com/v1/trm')
+        .then(r => r.json())
+        .then(d => {
+          if (d && d.valor) {
+            const fecha = d.fechaActualizacion
+              ? new Date(d.fechaActualizacion).toLocaleDateString('es-CO', { day:'2-digit', month:'short' })
+              : '';
+            setTRM(d.valor, 'oficial ' + fecha);
+          } else throw new Error();
+        })
+        .catch(() => {
+          document.getElementById('trmLabel').textContent = '· manual';
+          renderCOP(); renderUSD(); buildCharts(); recalcAll();
+        });
     });
 });
 </script>

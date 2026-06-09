@@ -275,6 +275,125 @@ body {
 </head>
 <body>
 
+<style>
+  #passwordOverlay {
+    position: fixed;
+    inset: 0;
+    background: #0f1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-family: 'Inter', sans-serif;
+  }
+  #passwordBox {
+    background: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-radius: 16px;
+    padding: 48px 40px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  }
+  #passwordBox .logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  #passwordBox .subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 32px;
+  }
+  #passwordBox input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #0f1117;
+    border: 1px solid #2a2d3a;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 3px;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  #passwordBox input:focus {
+    border-color: #4f8ef7;
+  }
+  #passwordBox input.error {
+    border-color: #ef4444;
+    animation: shake 0.3s ease;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  #passwordBox button {
+    width: 100%;
+    padding: 12px;
+    background: #4f8ef7;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #passwordBox button:hover {
+    background: #3b7de8;
+  }
+  #errorMsg {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+  }
+</style>
+
+<div id="passwordOverlay">
+  <div id="passwordBox">
+    <div class="logo">VOLTANA</div>
+    <div class="subtitle">Ingresa la contraseña para continuar</div>
+    <input type="password" id="pwdInput" placeholder="••••••••" autofocus onkeydown="if(event.key==='Enter')checkPassword()" />
+    <button onclick="checkPassword()">Ingresar</button>
+    <div id="errorMsg"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const CORRECT = 'Voltana';
+    const SESSION_KEY = 'voltana_auth';
+
+    if (sessionStorage.getItem(SESSION_KEY) === '1') {
+      document.getElementById('passwordOverlay').style.display = 'none';
+    }
+
+    window.checkPassword = function() {
+      const input = document.getElementById('pwdInput');
+      const val = input.value;
+      if (val === CORRECT) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        document.getElementById('passwordOverlay').style.display = 'none';
+      } else {
+        input.classList.add('error');
+        document.getElementById('errorMsg').textContent = 'Contraseña incorrecta';
+        setTimeout(() => input.classList.remove('error'), 400);
+        input.value = '';
+        input.focus();
+      }
+    };
+  })();
+</script>
+
+
 <header class="header">
   <div class="header-logo">Voltana <span>FAMILY OFFICE</span></div>
   <nav class="header-nav">

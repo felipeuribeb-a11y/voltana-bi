@@ -898,11 +898,12 @@ function recalcAll() {
   // Totales portafolio
   const totalCOPM = cop.sumActual; // en $M COP
   const totalUSD = usd.sumActual;
-  const consolidadoUSD = (totalCOPM * 1000000 / 1000 / trm) + totalUSD; // en USD K
+  // COP a USD: totalCOPM está en millones de pesos → * 1e6 / trm = USD
+  const consolidadoUSD = (totalCOPM * 1e6 / trm) + totalUSD; // en USD
 
   document.getElementById('kpiTotalCOP').textContent = '$' + fmt(totalCOPM) + 'M';
-  document.getElementById('kpiTotalUSD').textContent = '$' + fmt(totalUSD / 1000, 0) + 'K';
-  document.getElementById('kpiConsolidado').textContent = '$' + fmt(consolidadoUSD / 1000, 2) + 'M';
+  document.getElementById('kpiTotalUSD').textContent = 'USD ' + fmt(Math.round(totalUSD / 1000)) + 'K';
+  document.getElementById('kpiConsolidado').textContent = 'USD ' + (consolidadoUSD / 1e6).toFixed(2) + 'M';
 
   // Portfolio delta: actual vs inicial consolidado en USD
   const inicialCOPM = invCOP.reduce((a,x) => a + (x.inicial||0), 0);
